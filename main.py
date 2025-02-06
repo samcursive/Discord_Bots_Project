@@ -50,8 +50,20 @@ async def count(ctx: commands.Context):
 #-------------------------------------------------------------------------
 # rock paper and scissors emojis.
 
+@client.command()
+async def roshambo(ctx: commands.Context):
+    choices = ["🪨","📜","✂️","🔫"]
+    bot_choices = ["Rock", "Paper", "Scissors","Gun"]
 
+    message = await ctx.send("Choose your move!")
+    
+    for emoji in choices: 
+        await message.add_reaction(emoji)
 
+    def check(reaction, user):
+        return user == ctx.author and str(reaction.emoji) in choices
+    
+    
 
 
 
