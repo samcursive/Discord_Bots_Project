@@ -63,7 +63,52 @@ async def roshambo(ctx: commands.Context):
     def check(reaction, user):
         return user == ctx.author and str(reaction.emoji) in choices
     
+
+
+
+    # Try-catch block
+    try: 
+        reaction, user = await client.wait_for('reaction_add', timeout = 30.0, check=check)
+
+        user_choice = None #NULL in C++
+        
+#    choices = ["🪨","📜","✂️","🔫"]
+        if str(reaction.emoji) == "🪨":
+            user_choice = "Rock"
+        elif str(reaction.emoji) == "📜":
+            user_choice = "Paper"
+        elif str(reaction.emoji) == "✂️":
+            user_choice = "Scissors"
+        elif str(reaction.emoji) == "🔫":
+            user_choice = "Gun"
+
+        
+        # bot choices can be made hard. 
+        bot_choice = random.choice(bot_choices)
+
+
+        #conditional stuff
+        if user_choice == bot_choice:
+            result = "**It's a tie!**"  #open and close a header in python
+        
+        elif (user_choice == "Rock" and bot_choice == "Scissors") or \
+             (user_choice == "Scissors" and bot_choice == "Paper") or \
+             (user_choice == "Paper" and bot_choice == "Rock"):
+            result = f"**You Win! {user_choice} beats {bot_choice}**"
+
+        else: 
+            result = f"**You lose! {bot_choices} beats {user_choice}.**"
+
+
+        await message.clear_reactions()
+
+        await message.edit(content = f"{result}\nYou chose \"{user_choice}\".\n {client.user.name} chose \"{bot_choice}.\" ")
+
+    except TimeoutError:
+        await ctx.send("Hey this request timed out, you took too long to respond. Try again :D")
+
     
+#-------------------------------------------------------------------------
 
 
 
