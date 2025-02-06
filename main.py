@@ -7,4 +7,7 @@ from discord import Interaction
 # Load the contents of dot env
 load_dotenv()
 
-intents = discord.Intents.default
+intents = discord.Intents.default       #permission sets to dicord. 
+intents.message_content = True          #messsage contents stuff is true. 
+TOKEN = os.getenv("discord_token")
+
