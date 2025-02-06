@@ -24,3 +24,12 @@ async def on_ready():
 client.run(token=TOKEN)
 
 
+#-------------------------------------------------------------------------
+# ping commands
+
+@client.command()
+async def ping(ctx: commands.Conetxt):
+    await ctx.send("Pong!")
+
+
+client.run(token=TOKEN)
