@@ -11,3 +11,10 @@ intents = discord.Intents.default       #permission sets to dicord.
 intents.message_content = True          #messsage contents (read, write messages) stuff is true. 
 TOKEN = os.getenv("discord_token")
 
+
+# Assign a function when certain commands happen
+client = commands.Bot(command_prefix= "?", intents=intents)
+
+
+
+
